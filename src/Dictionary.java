@@ -15,6 +15,6 @@ public class Dictionary implements PasswordCracker {
 
     @Override
     public String nextPassword() {
-        return filein.hasNext() ? filein.next() : "";
+        return filein.hasNextLine() ? filein.nextLine() : null;
     }
 }

@@ -30,11 +30,11 @@ public class Runner {
         int i;
         String next = cracker.nextPassword();
         for(i = 0; !next.equals(password); i++){
-            if(cracker instanceof Dictionary && next.equals("")) {
-                System.out.printf("Password not found in dictionary after %.4f seconds", (System.nanoTime() - starttime) / 1000000000d);
+            next = cracker.nextPassword();
+            if(cracker instanceof Dictionary && next == null) {
+                System.out.printf("%dPassword not found in dictionary after %.4f seconds", i, (System.nanoTime() - starttime) / 1000000000d);
                 return;
             }
-            next = cracker.nextPassword();
         }
         long finishtime = System.nanoTime();
         System.out.printf("Password found! Took %d iterations to crack, %.4f seconds", i + 1, (finishtime - starttime) / 1000000000d);
